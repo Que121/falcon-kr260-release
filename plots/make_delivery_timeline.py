@@ -2,7 +2,7 @@
 """The delivery-timeline figure (R2): raw inference latency vs delivered-output latency, CCDF,
 one axis, from the 100k-frame enforced run (e5_delivery_D100.npz). The raw tail runs past the
 budget to 132.5 ms; the delivered curve terminates at deadline + enforcement envelope. Writes
-paper/figs/fig_delivery_timeline.{png,pdf}.
+figs/fig_delivery_timeline.{png,pdf}.
 """
 import os
 import numpy as np
@@ -24,7 +24,7 @@ mpl.rcParams.update({
     "figure.facecolor": "white", "savefig.facecolor": "white",
 })
 
-z = np.load("experiments/results/kr260/e1/e5_delivery_D100.npz")
+z = np.load("traces/kr260/e1/e5_delivery_D100.npz")
 raw, dlv = z["raw"], z["delivered"]
 D = 100.0
 
@@ -49,5 +49,5 @@ ax.set_ylabel("CCDF  P(latency > x)")
 ax.legend(loc="upper right")
 os.makedirs("paper/figs", exist_ok=True)
 for ext in ("png", "pdf"):
-    fig.savefig("paper/figs/fig_delivery_timeline.%s" % ext, dpi=300, bbox_inches="tight", pad_inches=0.05)
+    fig.savefig("figs/fig_delivery_timeline.%s" % ext, dpi=300, bbox_inches="tight", pad_inches=0.05)
 print("raw max %.2f | delivered max %.2f | fallbacks %d" % (raw.max(), dlv.max(), int(z["stale"].sum())))

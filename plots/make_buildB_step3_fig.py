@@ -9,7 +9,7 @@ import os, json, numpy as np
 import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-R = "experiments/results/buildB"
+R = "traces/buildB"
 vt_board = np.load(os.path.join(R, "step3_image_to_vt.npy")).astype(np.float32)      # (64,200,200)
 fr = np.load(os.path.join(R, "frame_0000.npz"))
 vt_ref = fr["vt_out"].astype(np.float32)                                              # (64,200,200)
@@ -46,5 +46,5 @@ a2.tick_params(axis="x", labelsize=7.5)
 fig.suptitle("Build-B Step 3 — full image->vt_out on KR260 (DPU image xmodel + HLS gather IP), PTQ", fontsize=11)
 fig.tight_layout(rect=[0, 0, 1, 0.94])
 for ext in ("png", "pdf"):
-    fig.savefig(os.path.join("docs/figs/buildB", "step3_image_to_vt." + ext), dpi=140, bbox_inches="tight")
-print("saved docs/figs/buildB/step3_image_to_vt.{png,pdf}")
+    fig.savefig(os.path.join("figs/buildB", "step3_image_to_vt." + ext), dpi=140, bbox_inches="tight")
+print("saved figs/buildB/step3_image_to_vt.{png,pdf}")

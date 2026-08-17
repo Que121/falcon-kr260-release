@@ -14,7 +14,7 @@ import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 
-R = "experiments/results/buildB"
+R = "traces/buildB"
 ref = np.load(os.path.join(R, "frame_0000.npz"))["occ"].astype(np.int64)      # (200,200,16) FP32
 brd = np.load(os.path.join(R, "step4_occ_fpref.npy")).astype(np.int64)        # on-board (FP32 vt in)
 full = np.load(os.path.join(R, "step4_occ_ptq.npy")).astype(np.int64)         # full PTQ pipeline (image-PTQ vt)
@@ -42,7 +42,7 @@ fig.suptitle("Build-B Step 4 — full camera→occupancy pipeline on KR260 FPGA 
              fontsize=9.5)
 fig.tight_layout(rect=[0, 0, 1, 0.92])
 for ext in ("png", "pdf"):
-    fig.savefig(os.path.join("docs/figs/buildB", "step4_full_pipeline." + ext), dpi=140, bbox_inches="tight")
+    fig.savefig(os.path.join("figs/buildB", "step4_full_pipeline." + ext), dpi=140, bbox_inches="tight")
 print("voxel geom-IoU: BEV-int8(FP32 vt) %.3f | full PTQ %.3f" % (voxel_geom_iou(ref, brd), voxel_geom_iou(ref, full)))
 print("voxel agree: BEV-int8 %.3f | full PTQ %.3f" % (voxel_agree(ref, brd), voxel_agree(ref, full)))
-print("saved docs/figs/buildB/step4_full_pipeline.{png,pdf}")
+print("saved figs/buildB/step4_full_pipeline.{png,pdf}")

@@ -5,7 +5,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.patches import Patch
 
-D = json.load(open("experiments/results/buildB/seam_decomp.json"))
+D = json.load(open("traces/buildB/seam_decomp.json"))
 s = D["subset_256_same_frames"]; full = D["full_val_6019"]; cost = D["per_seam_cost_256"]
 
 fig, (axA, axB) = plt.subplots(1, 2, figsize=(11, 4.4), gridspec_kw={"width_ratios": [1.55, 1]})

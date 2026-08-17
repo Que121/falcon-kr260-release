@@ -10,7 +10,7 @@ import os, json, numpy as np
 import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-R = "experiments/results/buildB"
+R = "traces/buildB"
 fp = np.load(os.path.join(R, "step2_ref_fp32_depthnet.npy"))[0]   # (152,16,44)
 q8 = np.load(os.path.join(R, "step2_ref_int8_depthnet.npy"))[0]
 dlog_fp, feat_fp = fp[:88], fp[88:]
@@ -58,5 +58,5 @@ for r, v in zip(b, vals): ax[2].text(r.get_x()+r.get_width()/2, v+0.003, "%.3f" 
 fig.suptitle("Build-B Step 2 — INT8 image path (ResNet50+FPN+depth_net) on KR260 B4096 DPU", fontsize=11)
 fig.tight_layout(rect=[0, 0, 1, 0.95])
 for ext in ("png", "pdf"):
-    fig.savefig(os.path.join("docs/figs/buildB", "step2_image_int8." + ext), dpi=140, bbox_inches="tight")
-print("saved docs/figs/buildB/step2_image_int8.{png,pdf}")
+    fig.savefig(os.path.join("figs/buildB", "step2_image_int8." + ext), dpi=140, bbox_inches="tight")
+print("saved figs/buildB/step2_image_int8.{png,pdf}")

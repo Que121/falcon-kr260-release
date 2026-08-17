@@ -1,5 +1,5 @@
 import numpy as np, glob, os
-R = "experiments/results"
+R = "traces"
 files = [
  "kr260/kr260_long_idle.npy", "kr260/kr260_long_dedicated.npy",
  "kr260/kr260_rt_idle.npy", "kr260/kr260_rt_loaded.npy", "kr260/kr260_rt_taskset.npy",

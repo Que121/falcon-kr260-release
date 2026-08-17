@@ -18,7 +18,7 @@ from matplotlib.lines import Line2D
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import _style as S; S.apply()
 
-RES = "experiments/results"
+RES = "traces"
 WINDOWS = [100, 200, 500, 1000, 2000, 5000, 10000, 20000, 30000, 50000, 100000]
 W = np.array(WINDOWS, float)
 
@@ -92,7 +92,7 @@ ax.text(1.9e4, 1.83, "KR260 DPU bounded\n$\\leq$1.5$\\times$ at any window", col
         ha="left", va="center", fontweight="semibold", linespacing=1.15, transform=_gt)
 
 fig.tight_layout(pad=0.25)
-out = "docs/figs/fig_window_margin"
+out = "figs/fig_window_margin"
 os.makedirs(os.path.dirname(out), exist_ok=True)
 fig.savefig(out + ".png", dpi=220, bbox_inches="tight", pad_inches=0.01)
 fig.savefig(out + ".pdf", bbox_inches="tight", pad_inches=0.01)

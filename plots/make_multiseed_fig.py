@@ -21,7 +21,7 @@ from matplotlib.ticker import ScalarFormatter, NullLocator
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import _style as S; S.apply()
 
-RES = "experiments/results"
+RES = "traces"
 GREEN, VERM, ORANGE, BLUE = S.TEAL, S.CRIMSON, S.GOLD, S.PLUM   # KR260 / Orin15W / Orin10W / GPUs
 
 # (label, glob, color)  -- ordered worst (top) to best (bottom); DPU last so it sits at the bottom
@@ -91,7 +91,7 @@ axR.set_title("band = seed min-max", pad=5)
 axR.grid(color="0.92", lw=0.6); axR.set_axisbelow(True)
 axR.legend(loc="upper left", ncol=2, handlelength=1.6, columnspacing=1.0, borderpad=0.2)
 
-out = "docs/figs/fig_multiseed_margin"
+out = "figs/fig_multiseed_margin"
 os.makedirs(os.path.dirname(out), exist_ok=True)
 fig.savefig(out + ".png", dpi=300); fig.savefig(out + ".pdf")
 print("wrote", out + ".pdf/.png")

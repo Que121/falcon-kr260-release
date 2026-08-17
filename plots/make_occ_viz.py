@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Qualitative occupancy visualization of the on-board INT8 prediction (KR260): BEV top-down + 3D voxels,
 Occ3D-nuScenes 18-class colormap, VRU (pedestrian/bicycle/motorcycle) emphasized. Frame from the on-board
-full-pipeline output board_argmax_full.npy (200x200x16, ego-centred). -> docs/figs/occ_bev_3d.{pdf,png}
+full-pipeline output board_argmax_full.npy (200x200x16, ego-centred). -> figs/occ_bev_3d.{pdf,png}
 """
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -10,7 +10,7 @@ import numpy as np, matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 
 FRAME = int(sys.argv[1]) if len(sys.argv) > 1 else 254
-OCC = np.load("experiments/results/buildB/fullrun/board_argmax_full.npy")[FRAME]  # (200,200,16)
+OCC = np.load("traces/buildB/fullrun/board_argmax_full.npy")[FRAME]  # (200,200,16)
 FREE = 17
 VRU = (2, 6, 7)
 
@@ -99,6 +99,6 @@ fig.suptitle("On-board INT8 occupancy prediction on the KR260 (Occ3D-nuScenes, f
              fontsize=12.5, fontweight="bold", y=1.02, color=S.INK)
 plt.tight_layout()
 os.makedirs("docs/figs", exist_ok=True)
-plt.savefig("docs/figs/occ_bev_3d.png", bbox_inches="tight")
-plt.savefig("docs/figs/occ_bev_3d.pdf", bbox_inches="tight")
-print("wrote docs/figs/occ_bev_3d.{png,pdf} | frame %d | classes present %s" % (FRAME, present))
+plt.savefig("figs/occ_bev_3d.png", bbox_inches="tight")
+plt.savefig("figs/occ_bev_3d.pdf", bbox_inches="tight")
+print("wrote figs/occ_bev_3d.{png,pdf} | frame %d | classes present %s" % (FRAME, present))

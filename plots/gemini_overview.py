@@ -29,7 +29,7 @@ MODELS = ["gemini-3-pro-image-preview", "gemini-2.5-flash-image", "gemini-2.5-fl
 
 
 def main():
-    out = sys.argv[1] if len(sys.argv) > 1 else "docs/figs/overview_gemini.png"
+    out = sys.argv[1] if len(sys.argv) > 1 else "figs/overview_gemini.png"
     key = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY")
     if not key:
         sys.exit("ERROR: set GEMINI_API_KEY (https://aistudio.google.com/apikey) and restart, then re-run.")

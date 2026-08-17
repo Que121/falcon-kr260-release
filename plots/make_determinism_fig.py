@@ -41,8 +41,8 @@ def load(path, kind):
     return np.asarray(vals[WARMUP:], np.float64)
 
 ap = argparse.ArgumentParser()
-ap.add_argument("--datadir", default="experiments/results/_figstage")
-ap.add_argument("--out", default="docs/figs/determinism_cdf")
+ap.add_argument("--datadir", default="traces/_figstage")
+ap.add_argument("--out", default="figs/determinism_cdf")
 a = ap.parse_args()
 
 fig, (axL, axR) = plt.subplots(1, 2, figsize=(7.2, 3.05))
@@ -51,7 +51,7 @@ fig.subplots_adjust(wspace=0.24, bottom=0.155, top=0.88, left=0.085, right=0.985
 stats, handles = {}, []
 for label, fn, kind, color, lw in CURVES:
     if kind == "mscsv":
-        reps = sorted(glob.glob(os.path.join("experiments/results/hpc/ms", fn)))
+        reps = sorted(glob.glob(os.path.join("traces/hpc/ms", fn)))
         if not reps:
             print("  [skip]", fn); continue
         seeds = [load(r, "csv") for r in reps]
@@ -66,7 +66,7 @@ for label, fn, kind, color, lw in CURVES:
         axR.semilogy(grid, np.clip(1 - mid, 6e-5, 1), color=color, lw=lw, solid_capstyle="round", zorder=4)
         x = allv
     else:
-        p = os.path.join(a.datadir if kind == "npy" else "experiments/results", fn)
+        p = os.path.join(a.datadir if kind == "npy" else "traces", fn)
         if not os.path.exists(p):
             print("  [skip]", p); continue
         x = load(p, kind); xs = np.sort(x / np.median(x))

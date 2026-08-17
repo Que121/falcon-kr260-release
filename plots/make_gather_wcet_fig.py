@@ -2,14 +2,14 @@
 """#2 gather-IP WCET-under-load figure: the deployed INT16 gather IP's compute is deterministic by
 construction (p50 invariant) and only the host poll tail grows under co-tenant load -- the same host-path
 mechanism as the DPU/resize (leg-3). Latency CDF (normalised by idle p50), idle vs +3 CPU burners.
-Data: experiments/results/kr260/dualip/gather_wcet_{idle,load}.npy. -> docs/figs/gather_wcet_load.{pdf,png}
+Data: traces/kr260/dualip/gather_wcet_{idle,load}.npy. -> figs/gather_wcet_load.{pdf,png}
 """
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import _style as S; S.apply()
 import numpy as np, matplotlib.pyplot as plt
 
-D = "experiments/results/kr260/dualip"
+D = "traces/kr260/dualip"
 idle = np.load(os.path.join(D, "gather_wcet_idle.npy")).astype(float)
 load = np.load(os.path.join(D, "gather_wcet_load.npy")).astype(float)
 p50 = float(np.median(idle))
@@ -43,7 +43,7 @@ fig.suptitle("Gather IP: PL compute is deterministic (p50 invariant); only the h
              fontsize=12.5, fontweight="bold", y=1.03, color=S.INK)
 plt.tight_layout()
 os.makedirs("docs/figs", exist_ok=True)
-plt.savefig("docs/figs/gather_wcet_load.png", bbox_inches="tight")
-plt.savefig("docs/figs/gather_wcet_load.pdf", bbox_inches="tight")
-print("wrote docs/figs/gather_wcet_load.{png,pdf} | idle p50=%.2f max/p50=%.3f | load max/p50=%.3f"
+plt.savefig("figs/gather_wcet_load.png", bbox_inches="tight")
+plt.savefig("figs/gather_wcet_load.pdf", bbox_inches="tight")
+print("wrote figs/gather_wcet_load.{png,pdf} | idle p50=%.2f max/p50=%.3f | load max/p50=%.3f"
       % (p50, idle.max()/p50, load.max()/p50))

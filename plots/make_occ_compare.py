@@ -2,7 +2,7 @@
 """Qualitative occupancy comparison across configurations on the SAME frame: Ground Truth vs FP32
 prediction vs INT8 algorithm (GPU per-tensor-pow2 sim) vs on-board INT8 (KR260). BEV top-down
 (camera-mask region, Occ3D-nuScenes colormap, VRUs circled). Shows the on-board INT8 deployment tracks
-the INT8 algorithm and the FP32 reference. -> docs/figs/occ_compare.{pdf,png}
+the INT8 algorithm and the FP32 reference. -> figs/occ_compare.{pdf,png}
 """
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -11,11 +11,11 @@ import numpy as np, matplotlib.pyplot as plt
 
 FRAME = int(sys.argv[1]) if len(sys.argv) > 1 else 254
 FREE, VRU = 17, (2, 6, 7)
-cmp = np.load("experiments/results/buildB/occ_cmp/occ_cmp_%04d.npz" % FRAME)
+cmp = np.load("traces/buildB/occ_cmp/occ_cmp_%04d.npz" % FRAME)
 gt, mask, fp32 = cmp["gt"], cmp["gt_mask"].astype(bool), cmp["fp32"]
-int8_path = "experiments/results/buildB/occ_cmp/occ_int8_%04d.npy" % FRAME
+int8_path = "traces/buildB/occ_cmp/occ_int8_%04d.npy" % FRAME
 int8 = np.load(int8_path) if os.path.exists(int8_path) else None   # INT8 algorithm (GPU sim); None until dumped
-board = np.load("experiments/results/buildB/fullrun/board_argmax_full.npy")[FRAME]
+board = np.load("traces/buildB/fullrun/board_argmax_full.npy")[FRAME]
 
 CMAP255 = np.array([
     [0,0,0],[255,120,50],[255,192,203],[255,255,0],[0,150,245],[0,255,255],[255,127,0],[255,0,0],
@@ -62,6 +62,6 @@ plt.tight_layout(rect=[0, 0.19, 1, 1])
 fig.legend(handles=handles, loc="lower center", ncol=min(9, len(handles)), fontsize=13,
            bbox_to_anchor=(0.5, 0.004), frameon=False, handlelength=1.4, columnspacing=1.5)
 os.makedirs("docs/figs", exist_ok=True)
-plt.savefig("docs/figs/occ_compare.png", bbox_inches="tight", dpi=400)
-plt.savefig("docs/figs/occ_compare.pdf", bbox_inches="tight")
-print("wrote docs/figs/occ_compare.{png,pdf} | frame %d | classes %s" % (FRAME, present))
+plt.savefig("figs/occ_compare.png", bbox_inches="tight", dpi=400)
+plt.savefig("figs/occ_compare.pdf", bbox_inches="tight")
+print("wrote figs/occ_compare.{png,pdf} | frame %d | classes %s" % (FRAME, present))

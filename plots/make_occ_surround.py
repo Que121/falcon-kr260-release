@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """FlashOcc-style surround figure: the 6 input cameras (2x3, surround layout) -> the on-board INT8
 occupancy prediction on the KR260 (3D voxels + BEV top-down), Occ3D-nuScenes colormap. Mirrors the
-official FlashOcc/SurroundOcc visualization (surround cams + dense voxel occ). -> docs/figs/occ_surround.{pdf,png}
+official FlashOcc/SurroundOcc visualization (surround cams + dense voxel occ). -> figs/occ_surround.{pdf,png}
 """
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -11,8 +11,8 @@ import matplotlib.image as mpimg
 
 FRAME = int(sys.argv[1]) if len(sys.argv) > 1 else 254
 FREE, VRU = 17, (2, 6, 7)
-CAMD = "experiments/results/buildB/occ_cmp/cams_%04d" % FRAME
-OCC = np.load("experiments/results/buildB/fullrun/board_argmax_full.npy")[FRAME]
+CAMD = "traces/buildB/occ_cmp/cams_%04d" % FRAME
+OCC = np.load("traces/buildB/fullrun/board_argmax_full.npy")[FRAME]
 
 CMAP255 = np.array([
     [0,0,0],[255,120,50],[255,192,203],[255,255,0],[0,150,245],[0,255,255],[255,127,0],[255,0,0],
@@ -76,6 +76,6 @@ fig.suptitle("FlashOcc on the KR260: 6 surround cameras → on-board INT8 occupa
              % FRAME, fontsize=13, fontweight="bold", y=0.995, color=S.INK)
 plt.tight_layout(rect=[0, 0.02, 1, 0.98])
 os.makedirs("docs/figs", exist_ok=True)
-plt.savefig("docs/figs/occ_surround.png", bbox_inches="tight")
-plt.savefig("docs/figs/occ_surround.pdf", bbox_inches="tight")
-print("wrote docs/figs/occ_surround.{png,pdf} | frame %d" % FRAME)
+plt.savefig("figs/occ_surround.png", bbox_inches="tight")
+plt.savefig("figs/occ_surround.pdf", bbox_inches="tight")
+print("wrote figs/occ_surround.{png,pdf} | frame %d" % FRAME)

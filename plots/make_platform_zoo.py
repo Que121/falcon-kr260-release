@@ -4,14 +4,14 @@ Jetson Orin at 10W and 15W, and five datacenter/cloud GPUs (L4, P100, A100, H100
 5 seeds x {idle, load} x 30k-100k frames. Each dot is one run's WCET margin (max/p50); the KR260 DPU
 clusters tight (1.03-1.38) while GPU/Orin worst cases are large AND wildly seed-dependent (up to ~23x),
 the unpredictability ISO 26262 penalises. (HPC GPU runs are on shared nodes, so even "idle" catches
-co-tenant interference -- which is exactly the point: you cannot bound it.) -> docs/figs/platform_zoo.{pdf,png}
+co-tenant interference -- which is exactly the point: you cannot bound it.) -> figs/platform_zoo.{pdf,png}
 """
 import sys, os, glob
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import _style as S; S.apply()
 import numpy as np, matplotlib.pyplot as plt
 
-R = "experiments/results"
+R = "traces"
 
 def margins(*globpats):
     vals = []
@@ -70,8 +70,8 @@ ax.legend(handles=leg, loc="lower right", fontsize=8.5)
 ax.grid(axis="x", which="both", color="#EAEDF0")
 plt.tight_layout()
 os.makedirs("docs/figs", exist_ok=True)
-plt.savefig("docs/figs/platform_zoo.png", bbox_inches="tight")
-plt.savefig("docs/figs/platform_zoo.pdf", bbox_inches="tight")
-print("wrote docs/figs/platform_zoo.{png,pdf}")
+plt.savefig("figs/platform_zoo.png", bbox_inches="tight")
+plt.savefig("figs/platform_zoo.pdf", bbox_inches="tight")
+print("wrote figs/platform_zoo.{png,pdf}")
 for label, fam, m in rows:
     print("  %-18s n=%2d  max/p50 median %.2f  range [%.2f, %.2f]" % (label, m.size, np.median(m), m.min(), m.max()))

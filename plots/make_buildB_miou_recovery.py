@@ -6,7 +6,7 @@ import os, numpy as np
 import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-R = "experiments/results/buildB"
+R = "traces/buildB"
 # measured on-board mIoU (16-frame subset)
 bars = [
     ("FP32\nreference", 23.83, "#444"),
@@ -30,5 +30,5 @@ ax.annotate("image PTQ depth is\nthe remaining drag\n(QAT in progress)", xy=(2, 
 ax.set_title("Build-B: recovering on-board DPU-INT8 occupancy mIoU\n(per-tensor power-of-2 8-bit; clamp via fix-point override)", fontsize=11)
 fig.tight_layout()
 for ext in ("png", "pdf"):
-    fig.savefig(os.path.join("docs/figs/buildB", "miou_recovery." + ext), dpi=140, bbox_inches="tight")
-print("saved docs/figs/buildB/miou_recovery.{png,pdf}")
+    fig.savefig(os.path.join("figs/buildB", "miou_recovery." + ext), dpi=140, bbox_inches="tight")
+print("saved figs/buildB/miou_recovery.{png,pdf}")

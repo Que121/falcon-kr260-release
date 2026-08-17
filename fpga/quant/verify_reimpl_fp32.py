@@ -7,7 +7,7 @@ import sys, numpy as np, torch, torch.nn.functional as F
 sys.path.insert(0, "fpga/quant")
 from image_full_model import ImageFull
 
-d = np.load("experiments/results/buildB/frame_0000.npz")
+d = np.load("traces/buildB/frame_0000.npz")
 img = torch.from_numpy(d["img"].astype(np.float32))          # (6,3,256,704)
 ref_feat = d["feat"].astype(np.float32)                      # (6,16,44,64) NHWC
 ref_depth = d["depth"].astype(np.float32)                    # (6,88,16,44) NDHW
@@ -15,7 +15,7 @@ print("ref_depth sum over bins (should be ~1 if post-softmax): mean=%.4f min=%.4
       % (ref_depth.sum(1).mean(), ref_depth.sum(1).min(), ref_depth.sum(1).max()))
 
 m = ImageFull()
-m.load_state_dict(torch.load("experiments/results/buildB/image_full_sd.pth", map_location="cpu"))
+m.load_state_dict(torch.load("traces/buildB/image_full_sd.pth", map_location="cpu"))
 m.eval()
 with torch.no_grad():
     y = m(img)                                               # (6,152,16,44)

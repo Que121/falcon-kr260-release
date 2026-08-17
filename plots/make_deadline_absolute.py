@@ -3,7 +3,7 @@
 Miss rate of the deployed six-camera KR260 pipeline against an absolute per-frame deadline in ms,
 with the 100 ms perception-budget marker. Also reconciles the margin bookkeeping: the 8% zero-miss
 margin belongs to the DPU probe series; the six-camera pipeline needs 14% idle and 2% dedicated.
-Writes experiments/results/deadline_absolute.csv and paper/figs/fig_deadline_absolute.{png,pdf}.
+Writes traces/deadline_absolute.csv and figs/fig_deadline_absolute.{png,pdf}.
 """
 import os
 import numpy as np
@@ -11,7 +11,7 @@ import matplotlib as mpl
 mpl.use("Agg")
 import matplotlib.pyplot as plt
 
-R = "experiments/results"
+R = "traces"
 TEAL = "#0FA08C"; BLUE = "#2F66C4"; AMBER = "#EBA13A"; RED = "#E1483B"
 INK = "#15202B"
 
@@ -64,6 +64,6 @@ ax.legend(loc="upper right", labelspacing=0.35, handlelength=1.5, borderpad=0.25
 
 os.makedirs("paper/figs", exist_ok=True)
 for ext in ("png", "pdf"):
-    fig.savefig("paper/figs/fig_deadline_absolute.%s" % ext, dpi=300, bbox_inches="tight", pad_inches=0.05)
+    fig.savefig("figs/fig_deadline_absolute.%s" % ext, dpi=300, bbox_inches="tight", pad_inches=0.05)
 open(os.path.join(R, "deadline_absolute.csv"), "w").write("\n".join(rows) + "\n")
 print("\n".join(rows))

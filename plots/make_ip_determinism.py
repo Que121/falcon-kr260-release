@@ -4,7 +4,7 @@
       start together; only the load tail extends (max/median 1.05 -> 1.22).
   (b) input-invariance: gather median latency across five pathological scene distributions at fixed N_POINTS.
       Bounded under the 53.2 ms WCET; the degenerate single-pillar scene runs faster, never slower.
-Style matches Fig 4 (Arial bold, rich palette). -> docs/figs/ip_determinism.{png,pdf,svg}
+Style matches Fig 4 (Arial bold, rich palette). -> figs/ip_determinism.{png,pdf,svg}
 """
 import os
 import numpy as np
@@ -12,7 +12,7 @@ import matplotlib as mpl
 mpl.use("Agg")
 import matplotlib.pyplot as plt
 
-R = "experiments/results/kr260"
+R = "traces/kr260"
 TEAL = "#0FA08C"; AMBER = "#EBA13A"; RED = "#E1483B"; INK = "#15202B"; GRAYTX = "#56616C"
 
 mpl.rcParams.update({
@@ -75,7 +75,7 @@ axB.set_ylim(0, wcet + 10); axB.set_yticks([0, 20, 40])
 axB.set_ylabel("gather latency (ms)")
 letter(axB, "B")
 
-out = "docs/figs/ip_determinism"
+out = "figs/ip_determinism"
 os.makedirs("docs/figs", exist_ok=True)
 fig.savefig(out + ".png", dpi=440, bbox_inches="tight", pad_inches=0.06)
 fig.savefig(out + ".pdf", bbox_inches="tight", pad_inches=0.06)

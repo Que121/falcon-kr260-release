@@ -4,7 +4,7 @@ import os, numpy as np
 import matplotlib; matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-os.makedirs("docs/figs/buildB", exist_ok=True)
+os.makedirs("figs/buildB", exist_ok=True)
 fig, (axL, axR) = plt.subplots(1, 2, figsize=(13.5, 4.6), gridspec_kw={"width_ratios": [1, 1.25]})
 
 # LEFT: recovery trajectory (16fr for the PTQ->fixed sweep; 256fr headline marked)
@@ -34,5 +34,5 @@ fig.suptitle("Build-B: full camera→occupancy pipeline on KR260 FPGA (all-PL DP
              fontsize=11)
 fig.tight_layout(rect=[0, 0, 1, 0.95])
 for ext in ("png", "pdf"):
-    fig.savefig(os.path.join("docs/figs/buildB", "final_miou." + ext), dpi=140, bbox_inches="tight")
-print("saved docs/figs/buildB/final_miou.{png,pdf}")
+    fig.savefig(os.path.join("figs/buildB", "final_miou." + ext), dpi=140, bbox_inches="tight")
+print("saved figs/buildB/final_miou.{png,pdf}")

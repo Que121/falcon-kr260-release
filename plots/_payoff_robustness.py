@@ -1,7 +1,7 @@
 """Robustness of the deadline-miss payoff across seeds/devices (not a single cherry-picked run).
 Reports miss% at d=1.10 (10% WCET margin) and max/p50, per platform, across all available repeats."""
 import numpy as np, glob, os
-R = "experiments/results"
+R = "traces"
 
 def stats(files, d=1.10):
     out = []

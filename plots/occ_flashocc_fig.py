@@ -3,7 +3,7 @@
 
 Reads the dumped FlashOcc outputs (flashocc_io/frame_*.npz, key 'occ_out' = (1,200,200,16,18) logits),
 argmax -> (200,200,16) class grid, and renders 3 diverse VRU-containing scenes in the canonical nuScenes
-Occ3D colormap, with vulnerable-road-user voxels highlighted. -> docs/figs/flashocc_occ.{png,pdf}
+Occ3D colormap, with vulnerable-road-user voxels highlighted. -> figs/flashocc_occ.{png,pdf}
 """
 import sys, glob, numpy as np, matplotlib
 matplotlib.use("Agg"); import matplotlib.pyplot as plt
@@ -20,7 +20,7 @@ CLASS_NAMES = ['others','barrier','bicycle','bus','car','constr.veh','motorcycle
                'manmade','vegetation','free']
 VRU = {2,6,7}  # bicycle, motorcycle, pedestrian
 IODIR = sys.argv[1] if len(sys.argv)>1 else "/home/ANON/flashocc_io"
-OUT   = sys.argv[2] if len(sys.argv)>2 else "docs/figs/flashocc_occ"
+OUT   = sys.argv[2] if len(sys.argv)>2 else "figs/flashocc_occ"
 
 def grid_of(f): return np.load(f)["occ_out"][0].argmax(-1).astype(np.int64)
 def bevtop(g, zfree=17):

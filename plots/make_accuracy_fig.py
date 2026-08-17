@@ -2,7 +2,7 @@
 """Accuracy figure: the on-board INT8 deployment meets/exceeds the INT8-quantized algorithm,
 scale-consistently. (a) mIoU board vs INT8-algorithm sim vs FP32 across 256/1024/2048 val frames;
 (b) VRU IoU on 2048 frames. Measured on the real KR260 + HPC evals on the same frames.
--> docs/figs/accuracy_int8_match.{pdf,png}
+-> figs/accuracy_int8_match.{pdf,png}
 """
 import sys, os
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -50,6 +50,6 @@ fig.suptitle("On-board INT8 occupancy on the KR260 reaches the INT8-quantized al
              fontsize=13, fontweight="bold", y=1.03, color=S.INK)
 plt.tight_layout()
 os.makedirs("docs/figs", exist_ok=True)
-plt.savefig("docs/figs/accuracy_int8_match.png", bbox_inches="tight")
-plt.savefig("docs/figs/accuracy_int8_match.pdf", bbox_inches="tight")
-print("wrote docs/figs/accuracy_int8_match.{png,pdf}")
+plt.savefig("figs/accuracy_int8_match.png", bbox_inches="tight")
+plt.savefig("figs/accuracy_int8_match.pdf", bbox_inches="tight")
+print("wrote figs/accuracy_int8_match.{png,pdf}")

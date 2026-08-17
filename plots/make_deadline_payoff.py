@@ -3,7 +3,7 @@
 Set the hard deadline at a fixed relative margin d over each platform's own median (T = d*p50) and
 measure the miss rate P(latency > T). KR260 (fixed-compute DPU) reaches zero misses at a small margin;
 tailed GPU / Orin do not. Nature style (Arial bold, palette matched to Figs 4-5), no title, legend off
-the curves. Writes experiments/results/deadline_payoff.csv and docs/figs/fig_deadline_payoff.{png,pdf,svg}.
+the curves. Writes traces/deadline_payoff.csv and figs/fig_deadline_payoff.{png,pdf,svg}.
 """
 import os
 import numpy as np
@@ -12,7 +12,7 @@ mpl.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 
-R = "experiments/results"
+R = "traces"
 TEAL = "#0FA08C"; BLUE = "#2F66C4"; AMBER = "#EBA13A"; RED = "#E1483B"; PLUM = "#8A52A8"
 INK = "#15202B"; GRAYTX = "#56616C"
 
@@ -86,7 +86,7 @@ for label, x in rows:
     csv.append("%s,%.4f,%.4f,%.4f,%s,%.4f" % (label, p50, x.max()/p50, cv, ",".join("%.4f" % m for m in msr), mz))
 open(os.path.join(R, "deadline_payoff.csv"), "w").write("\n".join(csv) + "\n")
 
-out = "docs/figs/fig_deadline_payoff"
+out = "figs/fig_deadline_payoff"
 os.makedirs("docs/figs", exist_ok=True)
 fig.savefig(out + ".png", dpi=420, bbox_inches="tight", pad_inches=0.06)
 fig.savefig(out + ".pdf", bbox_inches="tight", pad_inches=0.06)

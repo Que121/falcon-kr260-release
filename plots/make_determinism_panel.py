@@ -7,7 +7,7 @@ Rich harmonious palette, used semantically and consistently across panels:
   A: per-frame latency CDF normalized by each series' median  (architecture leg)
   B: per-run WCET margin (max/median) across the full hardware sweep  (platform leg)
   C: KR260 host-path leg, WCET margin under five submission policies  (host-path leg)
--> docs/figs/determinism_panel.{png,pdf,svg}
+-> figs/determinism_panel.{png,pdf,svg}
 """
 import os, sys, csv, glob
 import numpy as np
@@ -16,7 +16,7 @@ mpl.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 
-R = "experiments/results"
+R = "traces"
 WARMUP = 15
 
 # ---- rich, harmonious palette (semantic) ----
@@ -168,7 +168,7 @@ axC.set_ylim(0, 4.8); axC.set_yticks([0, 1, 2, 3, 4])
 axC.set_ylabel("WCET margin  (max / median)")
 letter(axC, "C", dx=-0.21)
 
-out = "docs/figs/determinism_panel"
+out = "figs/determinism_panel"
 os.makedirs("docs/figs", exist_ok=True)
 fig.savefig(out + ".png", dpi=420, bbox_inches="tight", pad_inches=0.08)
 fig.savefig(out + ".pdf", bbox_inches="tight", pad_inches=0.08)

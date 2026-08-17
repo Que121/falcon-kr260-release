@@ -7,7 +7,7 @@ Polls the appended board_argmax_full.npy until it reaches 6019 frames (3.85 GB),
 """
 import os, time, subprocess, sys
 
-NPY = "experiments/results/buildB/fullrun/board_argmax_full.npy"
+NPY = "traces/buildB/fullrun/board_argmax_full.npy"
 TARGET = 6019 * 200 * 200 * 16          # 3,852,160,000 bytes = all 6019 frames written
 PY = "D:/miniconda/python.exe"
 DEADLINE = time.time() + 12 * 3600
