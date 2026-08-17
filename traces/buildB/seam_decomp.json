@@ -1,0 +1,44 @@
+{
+  "_note": "OccFPGA DPU-INT8 accuracy decomposition. Sim = idealized per-tensor power-of-2 INT8 fake-quant on A100 (flashocc_eval_realint8.py / _boardsim.py / _decomp.py). Board = real Vitis-AI compiled xmodels on KR260 B4096 DPU. All mIoU on Occ3D-nuScenes val.",
+  "date": "2026-06-15",
+  "full_val_6019": {
+    "fp32": 32.19,
+    "real_dpu_int8_sim": 29.08,
+    "retention_pct": 90.3,
+    "job": 46236017,
+    "desc": "real DPU-INT8 sim = full per-tensor-pow2 INT8 on ALL DPU conv weights+activations (incl no-ReLU FPN/depth conv outputs), gather+predicter FP, BEV/occ clamp16. The honest conv-INT8 ceiling."
+  },
+  "subset_256_same_frames": {
+    "fp32": 25.0,
+    "real_int8_sim_all": 23.13,
+    "board_onboard_actual": 16.37,
+    "stage_decomp_sim": {
+      "img_conv_int8_only": 24.31,
+      "bev_conv_int8_only": 23.96,
+      "bev_plus_resize_int8": 23.98
+    },
+    "gather_seam_ablation_sim": {
+      "none_gatherFP": 23.13,
+      "board_featfp2_depthQ07_vtINT8_clip127": 23.04,
+      "featdepth_only_vtFP": 23.14,
+      "board_optfp_vtINT8_nopow2clip": 21.41,
+      "vt8pc_perchannel": 23.17,
+      "vt16_int16": 23.08
+    },
+    "vt_out_fp32_absmax": {"min": 133.99, "p50": 186.50, "p90": 210.15, "max": 250.71,
+      "note": "board fp_vt=0 => INT8 step 1.0, max repr 127, so vt_out>127 hard-clipped; but heavy-tailed so BEV ignores it (board mode 23.04 ~= none 23.13)."}
+  },
+  "per_seam_cost_256": {
+    "conv_int8_total": 1.87,
+    "gather_view_transform_ip": 0.09,
+    "resize_ip_upsample": 0.02,
+    "real_vitis_deployment_residual": 6.67
+  },
+  "conclusions": [
+    "DPU conv-INT8 is NOT the bottleneck: idealized INT8 reaches 90% of FP32 (29.08/32.19 full val).",
+    "The custom HLS view-transform gather IP is accuracy-TRANSPARENT (~0.1 mIoU across all vt_out precisions, even INT8 clip@127).",
+    "The INT8 resize-IP upsample is also ~transparent in sim (+0.02).",
+    "The board's ~7-pt residual (23.13 sim -> 16.37 board) is REAL Vitis-AI deployment quality (scale selection / BN-fold / multi-subgraph requant / fix-point-clamp realization), measurable+improvable ONLY on the board (deploy-time calibration: per-subgraph fix-points, AdaQuant/fast_finetune).",
+    "Board currently WEDGED (needs power-cycle) -> on-board re-measure of the deployment fix is blocked."
+  ]
+}

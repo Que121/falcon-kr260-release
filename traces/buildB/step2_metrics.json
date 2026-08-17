@@ -1,0 +1,9 @@
+{
+  "cos_depth_logits": 0.8831228017807007,
+  "cos_depth_softmax": 0.895237386226654,
+  "cos_feat": 0.8613796234130859,
+  "depth_argmax_match": 0.6661931818181818,
+  "exp_depthbin_mae": 4.863289190030992,
+  "input_fixpoint": 5,
+  "output_fixpoint": 3
+}

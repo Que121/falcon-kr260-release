@@ -1,0 +1,54 @@
+
+KR260 DPU idle (5 seeds, 30k each)  (n=5 runs)
+   max/p50  range [1.03, 1.17]   miss%@1.10  range [0.000, 0.010]  mean 0.005
+     kr260_ms_idle_rep1.npy             n=30000   max/p50 1.160   miss%@1.10 0.007
+     kr260_ms_idle_rep2.npy             n=30000   max/p50 1.034   miss%@1.10 0.000
+     kr260_ms_idle_rep3.npy             n=30000   max/p50 1.174   miss%@1.10 0.003
+     kr260_ms_idle_rep4.npy             n=30000   max/p50 1.132   miss%@1.10 0.010
+     kr260_ms_idle_rep5.npy             n=30000   max/p50 1.125   miss%@1.10 0.003
+
+KR260 DPU dedicated/idle (long)  (n=3 runs)
+   max/p50  range [1.08, 1.38]   miss%@1.10  range [0.000, 0.010]  mean 0.004
+     kr260_long_dedicated.npy           n=30000   max/p50 1.377   miss%@1.10 0.010
+     kr260_long_idle.npy                n=30000   max/p50 1.180   miss%@1.10 0.003
+     kr260_rt_taskset.npy               n=3000    max/p50 1.078   miss%@1.10 0.000
+
+Orin 10W (5 seeds, 30k each)  (n=5 runs)
+   max/p50  range [1.51, 3.46]   miss%@1.10  range [0.013, 0.200]  mean 0.091
+     ms_orin_10W_rep1.npy               n=30000   max/p50 1.530   miss%@1.10 0.030
+     ms_orin_10W_rep2.npy               n=30000   max/p50 2.749   miss%@1.10 0.087
+     ms_orin_10W_rep3.npy               n=30000   max/p50 3.459   miss%@1.10 0.200
+     ms_orin_10W_rep4.npy               n=30000   max/p50 2.198   miss%@1.10 0.123
+     ms_orin_10W_rep5.npy               n=30000   max/p50 1.509   miss%@1.10 0.013
+
+Orin 15W (5 seeds, 30k each)  (n=5 runs)
+   max/p50  range [1.41, 2.36]   miss%@1.10  range [0.010, 0.173]  mean 0.080
+     ms_orin_15W_rep1.npy               n=30000   max/p50 1.413   miss%@1.10 0.023
+     ms_orin_15W_rep2.npy               n=30000   max/p50 2.151   miss%@1.10 0.023
+     ms_orin_15W_rep3.npy               n=30000   max/p50 2.363   miss%@1.10 0.173
+     ms_orin_15W_rep4.npy               n=30000   max/p50 2.322   miss%@1.10 0.170
+     ms_orin_15W_rep5.npy               n=30000   max/p50 1.795   miss%@1.10 0.010
+
+Orin deployed/sustained/cotenant  (n=4 runs)
+   max/p50  range [1.09, 3.73]   miss%@1.10  range [0.000, 0.530]  mean 0.149
+     occfpga_orin_idle_15W_locked.npy   n=4000    max/p50 1.086   miss%@1.10 0.000
+     occfpga_orin_sustained_15W_locked.npy n=30000   max/p50 3.732   miss%@1.10 0.530
+     occfpga_orin_sustained2_15W_locked.npy n=100000  max/p50 2.334   miss%@1.10 0.039
+     occfpga_orin_cotenant_15W_locked.npy n=4000    max/p50 1.120   miss%@1.10 0.025
+
+Workstation GPU idle/loaded (long)  (n=2 runs)
+   max/p50  range [2.58, 4.38]   miss%@1.10  range [0.179, 4.501]  mean 2.340
+     occfpga_gpu_long_idle.npy          n=100000  max/p50 2.582   miss%@1.10 0.179
+     occfpga_gpu_long_loaded.npy        n=100000  max/p50 4.383   miss%@1.10 4.501
+
+HPC GPUs H100/L4/L40S idle  (n=3 runs)
+   max/p50  range [2.31, 10.76]   miss%@1.10  range [0.021, 5.059]  mean 2.280
+     occfpga_gpu_H100_idle.npy          n=100000  max/p50 2.622   miss%@1.10 1.761
+     occfpga_gpu_L4_idle.npy            n=100000  max/p50 2.309   miss%@1.10 0.021
+     occfpga_gpu_L40S_idle.npy          n=100000  max/p50 10.755   miss%@1.10 5.059
+
+HPC GPUs H100/L4/L40S loaded  (n=3 runs)
+   max/p50  range [1.28, 2.79]   miss%@1.10  range [0.011, 1.427]  mean 0.520
+     occfpga_gpu_H100_loaded.npy        n=100000  max/p50 2.795   miss%@1.10 1.427
+     occfpga_gpu_L4_loaded.npy          n=100000  max/p50 1.279   miss%@1.10 0.011
+     occfpga_gpu_L40S_loaded.npy        n=100000  max/p50 1.503   miss%@1.10 0.123

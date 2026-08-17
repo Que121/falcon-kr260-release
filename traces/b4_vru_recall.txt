@@ -1,0 +1,23 @@
+B4 -- on-board VRU recall.
+Source: fpga/quant/eval_board_vru_recall.py on board_argmax_full.npy vs Occ3D-nuScenes GT,
+camera-masked, full 6019-frame validation set. HPC job 46356143 (COMPLETED, 1m37s).
+
+on-board VRU recall (camera-masked, full val):
+  class       recall(class)   recall(occupied)   N_gt_voxels
+  bicycle     0.0573          0.5076             36357
+  motorcycle  0.1234          0.4802             54781
+  pedestrian  0.1481          0.4254             383479
+  VRU-mean    0.1383          0.4380
+
+delivered VRU recall = recall * (1 - deadline-miss @ 10% margin):
+  platform                    class     occupied   miss
+  KR260 DPU (dedicated)       0.1383    0.4380     0.0%
+  Workstation GPU (loaded)    0.1321    0.4183     4.5%
+  Jetson Orin (thermal)       0.1376    0.4358     0.5%
+
+Reading: recall(class) = GT VRU voxel predicted as the exact VRU class; recall(occupied) = GT VRU
+voxel predicted as any occupied (non-free) class (the safety-relevant "did the board see occupancy
+here" measure). A missed frame yields no in-time occupancy, so the loaded GPU's 4.5% deadline miss
+costs 4.5% of its delivered VRU recall (0.4380 -> 0.4183); KR260 delivers its full 0.4380 with 0 misses.
+Paper body uses the frame-level deadline-miss payoff (0% vs 4.5%) + qualitative fig:occ; this VRU
+number reported separately from the paper body.

@@ -1,0 +1,9 @@
+{
+  "image_to_vt_cos": 0.9153589010238647,
+  "seam_feat_cos": 0.9318928718566895,
+  "seam_depth_softmax_cos": 0.9455283284187317,
+  "seam_depth_argmax_match": 0.7088068181818182,
+  "gather_only_cos_step1": 0.985,
+  "fp_feat": 2,
+  "fp_vt": 0
+}
